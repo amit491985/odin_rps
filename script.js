@@ -28,6 +28,7 @@ function playRound( humanChoice, computerChoice ){
     if( humanChoice == computerChoice){
         //no one gets a point
         console.log("It's a tie!");
+        return 2;
     }else if ( (humanChoice == 'ROCK' && computerChoice == 'PAPER' ) || 
                (humanChoice == 'PAPER' && computerChoice == 'SCISSORS') ||
                (humanChoice == 'SCISSORS' && computerChoice == 'ROCK') ){
@@ -55,6 +56,7 @@ function playGame(){
 
         //result of this round
         let result = playRound( humanChoice , computerChoice );
+        console.log(result);
         if ( result == 1 ){
             humanScore = ++humanScore;
         }else if (result == 0){
