@@ -19,9 +19,8 @@ function getUserChoice(){
     if( userChoice == 'ROCK' || userChoice == 'PAPER' || userChoice == 'SCISSORS'){
         return userChoice;
     } else {
-        alert('Enter a valid input!')
+        alert('Enter a valid input!');
     }
-    
 }
 
 //Play one round of Rock paper scissors
@@ -49,16 +48,16 @@ function playGame(){
     let computerScore = 0;
     let humanScore = 0;
 
-
     //play 5 round
     for(i = 0; i < 5; i++){
         let humanChoice = getUserChoice();
         let computerChoice = getComputerChoice();
 
         //result of this round
-        if ( playRound( humanChoice , computerChoice ) ){
+        let result = playRound( humanChoice , computerChoice );
+        if ( result == 1 ){
             humanScore = ++humanScore;
-        }else {
+        }else if (result == 0){
             computerScore = ++computerScore;
         };
          
@@ -66,6 +65,7 @@ function playGame(){
         console.log('Your Score: ' + humanScore);
     }
 
+    //announce the results
     if (computerScore == humanScore){
         alert("It's a tie!");
     }else if (computerScore > humanScore){
