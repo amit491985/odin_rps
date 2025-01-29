@@ -12,8 +12,9 @@ function getComputerChoice(){
 }
 
 //Get human's move for the game
-function getUserChoice(){
-    let userChoice = prompt("Enter your choice: Rock/Paper/Scissors");
+function getUserChoice(e){
+    // let userChoice = prompt("Enter your choice: Rock/Paper/Scissors");
+    let userChoice = e.target.textContent;
     userChoice = userChoice.toUpperCase();
 
     if( userChoice == 'ROCK' || userChoice == 'PAPER' || userChoice == 'SCISSORS'){
@@ -48,33 +49,48 @@ function playGame(){
     //initialize scores
     let computerScore = 0;
     let humanScore = 0;
+    let max_rounds = 5;
+    let curr_round = 1;
 
-    //play 5 round
-    for(i = 0; i < 5; i++){
-        let humanChoice = getUserChoice();
-        let computerChoice = getComputerChoice();
+    //each button click will trigger the round
+    let buttons = document.querySelectorAll('button');
+    buttons = Array.from(buttons);
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (e)=>{
+            //choices for this round
+            let humanChoice = getUserChoice(e);
+            let computerChoice = getComputerChoice();
 
-        //result of this round
-        let result = playRound( humanChoice , computerChoice );
-        console.log(result);
-        if ( result == 1 ){
-            humanScore = ++humanScore;
-        }else if (result == 0){
-            computerScore = ++computerScore;
-        };
-         
-        console.log('Computer Score: ' + computerScore);
-        console.log('Your Score: ' + humanScore);
-    }
+            //result of this round
+            let result = playRound( humanChoice , computerChoice );
+            console.log(result);
+            if ( result == 1 ){
+                humanScore = ++humanScore;
+            }else if (result == 0){
+                computerScore = ++computerScore;
+            };
 
-    //announce the results
-    if (computerScore == humanScore){
-        alert("It's a tie!");
-    }else if (computerScore > humanScore){
-        alert('Computer wins the game');
-    }else {
-        alert('You win the game');
-    }
+            console.log('Computer Score: ' + computerScore);
+            console.log('Your Score: ' + humanScore);
+            curr_round++;
+
+            //announce the results if last round is play
+            if (curr_round > max_rounds){
+                if (computerScore == humanScore){
+                    alert("It's a tie!");
+                }else if (computerScore > humanScore){
+                    alert('Computer wins the game');
+                }else {
+                    alert('You win the game');
+                }
+            }
+        }
+        )
+    });
+
+    // }
+
+
 }
 
 // Let's play

@@ -20,3 +20,12 @@ button{
     font-size: medium;
     background-color: rgb(247, 155, 155);
 }
+
+.score_p1,.score_p2{
+    display: flex;
+    justify-items: center;
+}
+
+p{
+    font-weight: bolder;
+}
