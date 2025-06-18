@@ -21,9 +21,10 @@ button{
     background-color: rgb(247, 155, 155);
 }
 
-.score_p1,.score_p2{
+.score_card{
     display: flex;
-    justify-items: center;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 p{

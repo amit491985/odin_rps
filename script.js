@@ -71,7 +71,13 @@ function playGame(){
             };
 
             console.log('Computer Score: ' + computerScore);
+            let score_p1 = document.getElementById('p1_score')
+            score_p1.textContent = computerScore.toString();
+
             console.log('Your Score: ' + humanScore);
+            let score_p2 = document.getElementById('p2_score');
+            score_p2.textContent = humanScore.toString();
+
             curr_round++;
 
             //announce the results if last round is play
