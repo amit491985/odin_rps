@@ -49,7 +49,7 @@ function playGame(){
     //initialize scores
     let computerScore = 0;
     let humanScore = 0;
-    let max_rounds = 5;
+    let game_score = 5;
     let curr_round = 1;
 
     //each button click will trigger the round
@@ -61,15 +61,27 @@ function playGame(){
             let humanChoice = getUserChoice(e);
             let computerChoice = getComputerChoice();
 
+            let resultsList = document.getElementById('results_list');
+            let li = document.createElement('li');
+
+            let result_for_round = 'Round '+ curr_round + ': ';
+
             //result of this round
             let result = playRound( humanChoice , computerChoice );
             console.log(result);
             if ( result == 1 ){
                 humanScore = ++humanScore;
+                result_for_round = result_for_round + 'You won the round!';
             }else if (result == 0){
                 computerScore = ++computerScore;
+                result_for_round = result_for_round + 'Computer won the round!';
+            }else{
+                result_for_round = result_for_round + 'It was a tie!';
             };
 
+            li.textContent = result_for_round;
+            resultsList.appendChild(li);
+            
             console.log('Computer Score: ' + computerScore);
             let score_p1 = document.getElementById('p1_score')
             score_p1.textContent = computerScore.toString();
@@ -81,15 +93,27 @@ function playGame(){
             curr_round++;
 
             //announce the results if last round is play
-            if (curr_round > max_rounds){
-                if (computerScore == humanScore){
-                    alert("It's a tie!");
-                }else if (computerScore > humanScore){
-                    alert('Computer wins the game');
-                }else {
-                    alert('You win the game');
+            //if (curr_round > game_score){
+                // if (computerScore >= humanScore){
+                //     alert("It's a tie!");
+                // }else 
+                
+                
+
+                if (computerScore >= game_score){
+                    // alert('Computer wins the game');
+                    li = document.createElement('li');
+                    li.textContent = 'COMPUTER WON THE GAME';
+                    resultsList.appendChild(li);
+                }else if (humanScore >= game_score){ 
+                    // alert('You win the game');
+                    li = document.createElement('li');
+                    li.textContent = 'YOU WON THE GAME';
+                    resultsList.appendChild(li);
                 }
-            }
+
+                
+            //}
         }
         )
     });
